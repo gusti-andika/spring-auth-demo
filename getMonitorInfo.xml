@@ -1,0 +1,25 @@
+<project name="apache-ant" default="main" basedir=".">
+
+	<property name="url" value="http://localhost:8080/spring-auth/getString.json" />
+
+	<target name="clean">
+		<delete dir="build" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="build/classes" />
+		<javac debug="true" srcdir="test" destdir="build/classes" />
+	</target>
+	
+	<target name="main" depends="clean, compile">
+		<java classname="test.GetMonitorInfo">
+			<arg value="${url}" />
+			<arg value="test.js" />
+			<arg value="admin" />
+			<arg value="" />
+			<classpath>
+			    <pathelement path="build/classes"/>
+			  </classpath>
+		</java>
+	</target>
+</project>
